@@ -23,5 +23,7 @@ public interface MonthListContract extends BaseContract {
         void deleteBill(Long id);
 
         void updateBill(BBill bBill);
+
+        void getYearList(String id, String year);
     }
 }

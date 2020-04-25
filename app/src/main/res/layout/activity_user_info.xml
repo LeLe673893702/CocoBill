@@ -53,17 +53,6 @@
         <View style="@style/Divide.Default"/>
 
         <com.copasso.cocobill.widget.CommonItemLayout
-            android:id="@+id/cil_sex"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cil_leftText="@string/sex"
-            app:cil_leftTextColor="@color/textBrown"
-            app:cil_rightText="男"
-            app:cil_rightTextColor="@color/textMaple"/>
-
-        <View style="@style/Divide.Default"/>
-
-        <com.copasso.cocobill.widget.CommonItemLayout
             android:id="@+id/cil_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

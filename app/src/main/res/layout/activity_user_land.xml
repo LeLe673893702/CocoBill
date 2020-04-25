@@ -100,6 +100,24 @@
             android:textSize="16sp"
             android:background="@drawable/selector_edittext_bg"/>
 
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="个人"
+                />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="家庭"
+                />
+        </RadioGroup>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -117,7 +135,6 @@
                 android:layout_marginLeft="20dp"
                 android:gravity="center"
                 android:layout_centerVertical="true"
-                android:text="Forgot password?"
                 android:textSize="14sp"
                 android:textColor="#999999"/>
 

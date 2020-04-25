@@ -4,11 +4,13 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 
+import cn.bmob.v3.BmobObject;
+
 /**
  * 账单bean
  */
 @Entity
-public class BBill{
+public class BBill extends BmobObject {
 
     @Id(autoincrement = true)
     private Long id;  //本地id

@@ -3,25 +3,28 @@ package com.copasso.cocobill.presenter;
 
 import com.copasso.cocobill.base.BaseObserver;
 import com.copasso.cocobill.base.RxPresenter;
-import com.copasso.cocobill.model.bean.BaseBean;
 import com.copasso.cocobill.model.bean.local.BBill;
-import com.copasso.cocobill.model.bean.remote.MyUser;
 import com.copasso.cocobill.model.repository.LocalRepository;
-import com.copasso.cocobill.presenter.contract.LandContract;
 import com.copasso.cocobill.presenter.contract.MonthListContract;
 import com.copasso.cocobill.utils.BillUtils;
+import com.copasso.cocobill.utils.RxUtil;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.LogInListener;
-import cn.bmob.v3.listener.SaveListener;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.BiConsumer;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.internal.fuseable.ScalarCallable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Zhouas666 on 2019-01-08
- * Github: https://github.com/zas023
  */
 public class MonthListPresenter extends RxPresenter<MonthListContract.View> implements MonthListContract.Presenter{
 
@@ -43,6 +46,17 @@ public class MonthListPresenter extends RxPresenter<MonthListContract.View> impl
                         mView.onFailure(e);
                     }
                 });
+    }
+
+    @Override
+    public void getYearList(String id, String year) {
+
+        Disposable disposable = Observable.fromArray(1,2,3,4,5,6,7,8,9,10,11,12)
+                .compose(RxUtil.schedulersTransformer())
+                .concatMap((Function<Integer, ObservableSource<List<BBill>>>) month ->
+                        LocalRepository.getInstance().getBBillByUserIdWithYM(id, year, String.valueOf(month))).collect((Callable<ArrayList<BBill>>) ArrayList::new, ArrayList::addAll)
+                .subscribe(bBills -> mView.loadDataSuccess(BillUtils.packageDetailList(bBills)),
+                        throwable -> mView.onFailure(throwable));
     }
 
     @Override

@@ -35,8 +35,8 @@ import static com.copasso.cocobill.utils.DateUtils.FORMAT_M;
 import static com.copasso.cocobill.utils.DateUtils.FORMAT_Y;
 
 /**
- * Created by Zhouas666 on 2019-01-08
- * Github: https://github.com/zas023
+ * 账单明细
+ * 2020年4月25日
  */
 public class MonthListFragment extends BaseMVPFragment<MonthListContract.Presenter>
         implements MonthListContract.View {
@@ -56,10 +56,15 @@ public class MonthListFragment extends BaseMVPFragment<MonthListContract.Present
 
     /*****************************************************************************/
 
-    public void changeDate(String year, String month) {
+    public void changeMonth(String year, String month) {
         setYear = year;
         setMonth = month;
         mPresenter.getMonthList(MyApplication.getCurrentUserId(), setYear, setMonth);
+    }
+
+    public void changeYear(String year) {
+        setYear = year;
+        mPresenter.getYearList(MyApplication.getCurrentUserId(), setYear);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

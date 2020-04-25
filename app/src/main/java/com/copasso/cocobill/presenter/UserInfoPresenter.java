@@ -10,7 +10,6 @@ import cn.bmob.v3.listener.UpdateListener;
 
 /**
  * Created by Zhouas666 on 2019-01-08
- * Github: https://github.com/zas023
  */
 public class UserInfoPresenter extends RxPresenter<UserInfoContract.View>
         implements UserInfoContract.Presenter {
@@ -22,10 +21,11 @@ public class UserInfoPresenter extends RxPresenter<UserInfoContract.View>
         user.update(user.getObjectId(), new UpdateListener() {
             @Override
             public void done(BmobException e) {
-                if (e == null)
+                if (e == null) {
                     mView.onSuccess();
-                else
+                } else {
                     mView.onFailure(e);
+                }
             }
         });
     }

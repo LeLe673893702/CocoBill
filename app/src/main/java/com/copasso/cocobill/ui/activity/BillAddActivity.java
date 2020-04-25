@@ -238,6 +238,8 @@ public class BillAddActivity extends BaseMVPActivity<BillContract.Presenter>
             case R.id.tb_calc_num_del://删除
                 doDelete();
                 break;
+            default:
+                break;
         }
     }
 
@@ -250,11 +252,10 @@ public class BillAddActivity extends BaseMVPActivity<BillContract.Presenter>
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
         if (resultCode == RESULT_OK) {
-            switch (requestCode) {
-                case 0:
-                    mPresenter.getBillNote();
-                    break;
+            if (requestCode == 0) {
+                mPresenter.getBillNote();
             }
         }
     }

@@ -95,6 +95,9 @@ public class GlideCacheUtil {
         long size = 0;
         try {
             File[] fileList = file.listFiles();
+            if (fileList == null || fileList.length == 0){
+                return size;
+            }
             for (File aFileList : fileList) {
                 if (aFileList.isDirectory()) {
                     size = size + getFolderSize(aFileList);

@@ -1,7 +1,6 @@
 package com.copasso.cocobill.ui.activity;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -13,7 +12,6 @@ import android.provider.MediaStore;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -89,7 +87,6 @@ public class UserInfoActivity extends BaseMVPActivity<UserInfoContract.Presenter
         iconRL = findViewById(R.id.rlt_update_icon);
         iconIv = findViewById(R.id.img_icon);
         usernameCL = findViewById(R.id.cil_username);
-        sexCL = findViewById(R.id.cil_sex);
         phoneCL = findViewById(R.id.cil_phone);
         emailCL = findViewById(R.id.cil_email);
 
@@ -104,10 +101,9 @@ public class UserInfoActivity extends BaseMVPActivity<UserInfoContract.Presenter
         });
 
         //加载当前头像
-        Glide.with(mContext).load(currentUser.getImage()).into(iconIv);
+        Glide.with(mContext).load(currentUser.getAvatar()).into(iconIv);
         //添加用户信息
         usernameCL.setRightText(currentUser.getUsername());
-        sexCL.setRightText(currentUser.getGender());
         phoneCL.setRightText(currentUser.getMobilePhoneNumber());
         emailCL.setRightText(currentUser.getEmail());
     }
@@ -117,7 +113,6 @@ public class UserInfoActivity extends BaseMVPActivity<UserInfoContract.Presenter
         super.initClick();
         iconRL.setOnClickListener(this);
         usernameCL.setOnClickListener(this);
-        sexCL.setOnClickListener(this);
         phoneCL.setOnClickListener(this);
         emailCL.setOnClickListener(this);
     }
@@ -133,9 +128,6 @@ public class UserInfoActivity extends BaseMVPActivity<UserInfoContract.Presenter
                 break;
             case R.id.cil_username:  //用户名
                 SnackbarUtils.show(mContext, "江湖人行不更名，坐不改姓！");
-                break;
-            case R.id.cil_sex:  //性别
-                showGenderDialog();
                 break;
             case R.id.cil_phone:  //电话修改
                 showPhoneDialog();
@@ -173,39 +165,6 @@ public class UserInfoActivity extends BaseMVPActivity<UserInfoContract.Presenter
                 }).show();
     }
 
-    /**
-     * 显示选择性别对话框
-     */
-    public void showGenderDialog() {
-
-        new MaterialDialog.Builder(mContext)
-                .title("选择性别")
-                .titleGravity(GravityEnum.CENTER)
-                .items(new String[]{"男", "女"})
-                .positiveText("确定")
-                .negativeText("取消")
-                .itemsCallbackSingleChoice(0, (dialog, itemView, which, text) -> {
-                    currentUser.setGender(text.toString());
-                    doUpdate();
-                    sexCL.setRightText(currentUser.getGender());
-                    dialog.dismiss();
-                    return false;
-                }).show();
-//        switch (which) {
-//            case GENDER_MAN: // 男性
-//                if(currentUser.getGender().equals("女")){
-//                    currentUser.setGender("男");
-//                    doUpdate();
-//                }
-//                break;
-//            case GENDER_FEMALE: // 女性
-//                if(currentUser.getGender().equals("男")){
-//                    currentUser.setGender("女");
-//                    doUpdate();
-//                }
-//                break;
-//        }
-    }
 
     /**
      * 显示更换电话对话框
@@ -364,7 +323,7 @@ public class UserInfoActivity extends BaseMVPActivity<UserInfoContract.Presenter
                 public void done(BmobException e) {
                     if (e==null) {
                         MyUser newUser=new MyUser();
-                        newUser.setImage(bmobFile.getFileUrl());
+                        newUser.setAvatar(bmobFile.getFileUrl());
                         newUser.update(currentUser.getObjectId(),new UpdateListener() {
                             @Override
                             public void done(BmobException e) {

@@ -1,5 +1,7 @@
 package com.copasso.cocobill.base;
 
+import com.uber.autodispose.AutoDisposeConverter;
+
 /**
  * Created by Zhouas666 on AndroidStudio
  * Date: 2019-01-08
@@ -12,6 +14,8 @@ public interface BaseContract {
         void attachView(T view);
 
         void detachView();
+
+
     }
 
     interface BaseView {
@@ -19,5 +23,6 @@ public interface BaseContract {
         void onSuccess();
 
         void onFailure(Throwable e);
+
     }
 }

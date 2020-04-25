@@ -5,9 +5,13 @@ import com.copasso.cocobill.base.BaseObserver;
 import com.copasso.cocobill.base.RxPresenter;
 import com.copasso.cocobill.model.bean.local.BBill;
 import com.copasso.cocobill.model.repository.LocalRepository;
+import com.copasso.cocobill.model.rxbmob.RxBmob;
 import com.copasso.cocobill.presenter.contract.BillContract;
+import com.copasso.cocobill.utils.RxUtil;
 
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -32,12 +36,12 @@ public class BillPresenter extends RxPresenter<BillContract.View> implements Bil
                 .subscribe(new BaseObserver<BBill>() {
                     @Override
                     protected void onSuccees(BBill bBill) throws Exception {
-                        mView.onSuccess();
+
                     }
 
                     @Override
                     protected void onFailure(Throwable e, boolean isNetWorkError) throws Exception {
-                        mView.onFailure(e);
+
                     }
                 });
     }

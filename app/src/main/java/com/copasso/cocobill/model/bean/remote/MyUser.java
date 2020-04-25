@@ -4,33 +4,24 @@ import cn.bmob.v3.BmobUser;
 
 public class MyUser extends BmobUser {
 
-    private String image;
+    private String avatar;
 
-    private String gender;
+    private int type;
 
-    private String age;
-
-    public String getImage() {
-        return image;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
-    public String getGender() {
-        return gender;
+
+    public int getType() {
+        return type;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
+    public void setType(int type) {
+        this.type = type;
     }
 }

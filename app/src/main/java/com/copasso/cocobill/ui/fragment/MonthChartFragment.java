@@ -41,8 +41,10 @@ import static com.copasso.cocobill.utils.DateUtils.FORMAT_M;
 import static com.copasso.cocobill.utils.DateUtils.FORMAT_Y;
 
 /**
- * Created by Zhouas666 on 2019-01-09
- * Github: https://github.com/zas023
+ *
+ * 账单统计
+ * @date 2020/4/25
+ *
  */
 public class MonthChartFragment extends BaseMVPFragment<MonthChartContract.Presenter>
         implements MonthChartContract.View, OnChartValueSelectedListener, View.OnClickListener {
@@ -164,6 +166,8 @@ public class MonthChartFragment extends BaseMVPFragment<MonthChartContract.Prese
                 break;
             case R.id.item_other:
                 break;
+            default:
+                break;
         }
     }
 
@@ -204,7 +208,7 @@ public class MonthChartFragment extends BaseMVPFragment<MonthChartContract.Prese
             totalMoney = monthChartBean.getTotalIn();
         }
 
-        centerMoney.setText("" + totalMoney);
+        centerMoney.setText(String.valueOf(totalMoney));
 
         ArrayList<PieEntry> entries = new ArrayList<>();
         ArrayList<Integer> colors = new ArrayList<>();

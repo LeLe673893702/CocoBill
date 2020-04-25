@@ -9,9 +9,25 @@
         <!--app:showAsAction="ifRoom|collapseActionView" />-->
 
     <item
-        android:id="@+id/toolbar_date"
-        android:icon="@mipmap/ic_toolbar_date"
+        android:id="@+id/toolbar_month"
+        android:icon="@mipmap/ic_toolbar_month"
         android:orderInCategory="100"
-        android:title="日历"
+        android:title="月"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/toolbar_quarter"
+        android:icon="@mipmap/ic_toolbar_quarter"
+        android:orderInCategory="100"
+        android:title="季"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/toolbar_year"
+        android:icon="@mipmap/ic_toolbar_year"
+        android:orderInCategory="100"
+        android:title="年"
+        app:showAsAction="always" />
+
+
 </menu>

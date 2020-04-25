@@ -13,6 +13,8 @@ import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.copasso.cocobill.R;
 import com.copasso.cocobill.common.Constants;
 import com.copasso.cocobill.model.bean.local.BSort;
@@ -122,7 +124,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         drawerHeader = navigationView.inflateHeaderView(R.layout.drawer_header);
@@ -183,15 +185,24 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.toolbar_date:
+            case R.id.toolbar_month:
                 //时间选择器
                 new TimePickerBuilder(mContext, (Date date, View v) -> {
-                    monthListFragment.changeDate(DateUtils.date2Str(date, "yyyy"), DateUtils.date2Str(date, "MM"));
+                    monthListFragment.changeMonth(DateUtils.date2Str(date, "yyyy"), DateUtils.date2Str(date, "MM"));
                     monthChartFragment.changeDate(DateUtils.date2Str(date, "yyyy"), DateUtils.date2Str(date, "MM"));
                 }).setType(new boolean[]{true, true, false, false, false, false})
                         .setRangDate(null, Calendar.getInstance())
                         .isDialog(true)//是否显示为对话框样式
                         .build().show();
+                break;
+            case R.id.toolbar_quarter:
+                new TimePickerBuilder(mContext, (date, v) -> {
+
+                }).setType(new boolean[]{true, false, false, false, false, false})
+                        .setRangDate(null, Calendar.getInstance())
+                        .isDialog(true);
+
+            default:
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -206,10 +217,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_sync:    //同步账单
-                if (currentUser == null)
-                    SnackbarUtils.show(mContext, "请先登陆");
-                else
+                if (currentUser == null) {
+                    SnackbarUtils.show(mContext, "请先登录");
+                } else {
                     BmobRepository.getInstance().syncBill(currentUser.getObjectId());
+                }
                 break;
             case R.id.nav_setting:
                 startActivity(new Intent(mContext,SettingActivity.class));
@@ -289,6 +301,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 case LOGINACTIVITY_CODE:
                     setDrawerHeaderAccount();
                     break;
+                default:
+                    break;
             }
         }
     }
@@ -302,11 +316,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         if (currentUser != null) {
             drawerTvAccount.setText(currentUser.getUsername());
             drawerTvMail.setText(currentUser.getEmail());
-            Glide.with(mContext).load(currentUser.getImage()).into(drawerIv);
+            Glide.with(mContext).load(currentUser.getAvatar())
+                    .error(R.mipmap.ic_default_avatar)
+                    .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                    .into(drawerIv);
         } else {
             drawerTvAccount.setText("账号");
             drawerTvMail.setText("点我登陆");
-            drawerIv.setImageResource(R.mipmap.ic_def_icon);
+            drawerIv.setImageResource(R.mipmap.ic_default_avatar);
         }
     }
 }
