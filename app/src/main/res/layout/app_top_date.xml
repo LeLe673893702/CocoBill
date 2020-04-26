@@ -17,6 +17,7 @@
         android:gravity="center">
 
         <TextView
+            android:id="@+id/tvMonthOutComeLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="当月支出(元)"
@@ -44,6 +45,7 @@
         android:orientation="vertical"
         android:gravity="center">
         <TextView
+            android:id="@+id/t_month_income_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="当月收入(元)"

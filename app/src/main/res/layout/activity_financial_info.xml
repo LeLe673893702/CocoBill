@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.FinancialInfoActivity">
+
+    <include layout="@layout/app_toolbar"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/about_page_line"
+        />
+
+    <TextView
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        tools:text="大成基金管理公司"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text18"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/about_page_line"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text15"
+        android:textColor="@color/gray"
+        android:text="总金额(元)"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="#F83A3A"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        tools:text="123.12"
+        android:gravity="center"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text15"
+                android:textColor="@color/gray"
+                android:text="平均单价"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text16"
+                tools:text="16"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/dark_gray"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text15"
+                android:textColor="@color/gray"
+                android:text="份数"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text16"
+                tools:text="16"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/dark_gray"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text15"
+                android:textColor="@color/gray"
+                android:text="当前收益"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text16"
+                tools:text="16"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/dark_gray"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/about_page_line"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="平均单价走势图"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text15"
+        android:paddingTop="15dp"
+        android:paddingLeft="15dp"
+        />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lcPrice"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="累计盈亏走势图"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text15"
+        android:paddingTop="15dp"
+        android:paddingLeft="15dp"
+        />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/lcProfit"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        />
+</LinearLayout>

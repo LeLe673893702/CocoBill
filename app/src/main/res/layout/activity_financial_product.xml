@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.FinancialProductActivity"
+    >
+
+    <include layout="@layout/app_toolbar"
+        android:id="@+id/toolbar"
+        />
+
+    <LinearLayout
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:id="@+id/llTotal"
+        android:background="@color/colorPrimary"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textDarkWhite"
+                android:layout_gravity="center_horizontal"
+                android:text="总金额(元)"
+                android:textSize="@dimen/text15"
+                android:layout_marginTop="16dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text25"
+                tools:text="2356456"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="60dp"
+            android:background="@color/about_page_line"
+            android:layout_marginTop="15dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textDarkWhite"
+                android:layout_gravity="center_horizontal"
+                android:text="持有收益(元)"
+                android:textSize="@dimen/text15"
+                android:layout_marginTop="16dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text25"
+                tools:text="2356456"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvProductList"
+        android:layout_below="@+id/llTotal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"
+        android:src="@mipmap/tallybook_note"
+        app:elevation="3dp"
+        app:pressedTranslationZ="5dp"
+        app:layout_anchor="@id/rvProductList"
+        app:layout_anchorGravity="bottom|center"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        app:layout_behavior="com.copasso.cocobill.widget.ScrollAwareBehavior"
+        android:layout_marginRight="16dp"
+        />
+
+</RelativeLayout>
